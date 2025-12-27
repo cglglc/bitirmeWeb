@@ -1,0 +1,86 @@
+/* pages/operator.css */
+.operator-hero{ background: linear-gradient(180deg,#f8fbff,#f1f6ff); border:1px solid var(--border); border-radius:12px; padding:16px; margin-bottom:14px; }
+.operator-hero .hero-title{ font-size:20px; font-weight:800; margin:0 0 4px; }
+.operator-hero .hero-sub{ color:var(--muted); margin:0; }
+.operator-hero .hero-row{ display:flex; align-items:center; gap:12px; }
+.operator-hero .hero-icon{ width:42px; height:42px; display:grid; place-items:center; border-radius:10px; background:#fff; box-shadow:0 6px 16px rgba(14,24,46,0.06); }
+
+.issue-create-layout{ display:flex; gap:18px; align-items:flex-start; }
+.issue-create-main{ flex:1; display:flex; flex-direction:column; gap:14px; }
+.issue-create-side{ width:320px; display:flex; flex-direction:column; gap:12px; }
+.form-card{ background:#fff; border:1px solid var(--border); border-radius:12px; padding:16px; }
+.form-card h3{ margin:0 0 8px; }
+.form-card .subtitle{ text-align:left; color:var(--muted); margin:0 0 12px; }
+.form-grid.two{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.form-grid.two .form-col.full{ grid-column:1/-1; }
+.form-col textarea{ width:100%; min-height:110px; padding:10px; border-radius:10px; border:1px solid var(--border); }
+.form-foot{ display:flex; justify-content:space-between; align-items:center; gap:10px; margin-top:10px; }
+.pill{ display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; background:#f3f6ff; color:#1e3a8a; font-weight:700; }
+
+.summary-card{ background:#fff; border:1px solid var(--border); border-radius:12px; padding:12px; }
+.summary-card h4{ margin:0 0 8px; }
+.recent-issues{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px; }
+.recent-issues li{ padding:10px; border:1px solid var(--border); border-radius:10px; background:linear-gradient(180deg,#fff,#f9fbff); }
+.recent-issues .meta{ color:var(--muted); font-size:13px; }
+
+.status-grid{ display:grid; grid-template-columns:2fr 1fr; gap:16px; align-items:start; }
+.status-card{ background:#fff; border:1px solid var(--border); border-radius:12px; padding:16px; }
+.status-row{ display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:10px; }
+.status-pill{ padding:8px 12px; border-radius:999px; font-weight:800; }
+.status-pill.operational{ background:#ecfeef; color:#166534; }
+.status-pill.paused{ background:#fff7ed; color:#b45309; }
+.status-pill.maintenance{ background:#fef2f2; color:#991b1b; }
+.status-meta{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px; }
+.meta-card{ padding:10px; border:1px solid var(--border); border-radius:10px; background:#f9fafb; }
+.note-area textarea{ width:100%; min-height:90px; padding:10px; border-radius:10px; border:1px solid var(--border); }
+.history-list{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px; }
+.history-item{ padding:10px; border-radius:10px; border:1px solid var(--border); background:#fff; }
+.history-item strong{ display:block; }
+.mini-card{ background:#fff; border:1px solid var(--border); border-radius:12px; padding:12px; }
+.mini-card h4{ margin:0 0 8px; }
+
+.queue-layout{ display:flex; gap:18px; align-items:flex-start; }
+.queue-stations{ width:320px; background:#fff; border:1px solid var(--border); border-radius:12px; padding:12px; }
+.station-list{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px; max-height:620px; overflow:auto; }
+.station-card{ border:1px solid var(--border); border-radius:10px; padding:10px; background:linear-gradient(180deg,#fff,#f8fbff); cursor:pointer; transition:transform .1s, box-shadow .1s; }
+.station-card:hover{ transform:translateY(-2px); box-shadow:0 10px 22px rgba(14,24,46,0.06); }
+.station-card.active{ border-color:rgba(47,107,255,0.4); box-shadow:0 10px 26px rgba(47,107,255,0.1); }
+.station-card .title{ margin:0; font-size:16px; font-weight:800; text-align:left; }
+.station-card .meta{ color:var(--muted); font-size:13px; display:flex; justify-content:space-between; margin-top:6px; }
+.badge{ padding:6px 10px; border-radius:999px; font-weight:700; font-size:12px; display:inline-flex; align-items:center; }
+.badge-green{ background:#ecfeef; color:#166534; }
+.badge-amber{ background:#fff7ed; color:#b45309; }
+.badge-blue{ background:#eef2ff; color:#1e3a8a; }
+
+.queue-detail{ flex:1; background:#fff; border:1px solid var(--border); border-radius:12px; padding:14px; }
+.queue-head{ display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.queue-head h3{ margin:0; }
+.queue-metrics{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:12px 0; }
+.metric{ padding:10px; border-radius:10px; border:1px solid var(--border); background:#f8fafc; }
+.metric .label{ color:var(--muted); font-size:13px; }
+.metric .value{ font-weight:800; font-size:18px; }
+
+.add-carrier{ margin:12px 0; display:grid; grid-template-columns:repeat(5,1fr); gap:8px; }
+.add-carrier input{ width:100%; padding:8px 10px; border-radius:8px; border:1px solid var(--border); }
+.add-carrier .wide{ grid-column:1/-2; }
+.add-actions{ display:flex; gap:8px; align-items:center; margin-top:6px; }
+
+.queue-table{ width:100%; border-collapse:collapse; margin-top:10px; }
+.queue-table th, .queue-table td{ padding:10px; border-bottom:1px solid rgba(0,0,0,0.04); text-align:left; }
+.queue-table tbody tr:hover{ background:#fbfdff; }
+.queue-actions{ display:flex; gap:8px; }
+.action-btn{ padding:6px 10px; border-radius:8px; border:1px solid var(--border); background:#fff; cursor:pointer; font-size:13px; }
+.action-btn.danger{ border-color:#fecdd3; color:#b91c1c; }
+.action-btn.primary{ background:linear-gradient(90deg,#2f6bff,#64b4ff); color:#fff; border:none; }
+
+.history-chip{ display:inline-flex; align-items:center; gap:6px; padding:6px 8px; border-radius:8px; background:#f3f4f6; font-size:13px; }
+
+@media (max-width:1100px){
+  .issue-create-layout{ flex-direction:column; }
+  .issue-create-side{ width:100%; }
+  .status-grid{ grid-template-columns:1fr; }
+  .queue-layout{ flex-direction:column; }
+  .queue-stations{ width:100%; }
+  .add-carrier{ grid-template-columns:1fr 1fr; }
+  .queue-metrics{ grid-template-columns:1fr 1fr; }
+}

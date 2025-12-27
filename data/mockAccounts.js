@@ -2,6 +2,7 @@
 // Simple mock account store and search helper to simulate server-side search.
 
 const allUsers = [];
+const pendingOperators = [];
 
 // generate sample users (mix of roles)
 const roles = ['admin','operator','carrier'];
@@ -51,5 +52,41 @@ export function updateUserRole(id, newRole) {
 
 export function getUserById(id) {
   return allUsers.find(x => x.id === id) || null;
+}
+
+export function addPendingOperator({ name, surname, email, password, role = 'operator' }) {
+  if (!email) return { ok: false, reason: 'Email required' };
+  const exists = allUsers.some(u => u.email.toLowerCase() === email.toLowerCase());
+  if (exists) return { ok: false, reason: 'User already exists' };
+  const alreadyPending = pendingOperators.some(u => u.email.toLowerCase() === email.toLowerCase());
+  if (alreadyPending) return { ok: false, reason: 'Already submitted' };
+  pendingOperators.unshift({
+    id: `p-${pendingOperators.length + 1}`,
+    name: `${name || ''} ${surname || ''}`.trim() || email,
+    surname: surname || '',
+    email,
+    password: password || '',
+    role,
+    submitted: new Date().toISOString().slice(0, 16).replace('T', ' ')
+  });
+  return { ok: true };
+}
+
+export function listPendingOperators() {
+  return pendingOperators;
+}
+
+export function approveOperator(email) {
+  const idx = pendingOperators.findIndex(u => u.email.toLowerCase() === email.toLowerCase());
+  if (idx === -1) return false;
+  const pending = pendingOperators.splice(idx, 1)[0];
+  allUsers.push({
+    id: `u${allUsers.length + 1}`,
+    name: pending.name,
+    email: pending.email,
+    role: pending.role || 'operator',
+    created: pending.submitted
+  });
+  return true;
 }
 

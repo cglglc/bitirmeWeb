@@ -9,5 +9,7 @@ export const facility = {
   email: 'contact@portofoakland.com',
   emergencyContact: '+1 (510) 627-1911',
   weekdayStart: '06:00',
-  weekdayEnd: '22:00'
+  weekdayEnd: '22:00',
+  operationalStatus: 'Operational',
+  opsNote: 'Running on normal schedule'
 };
