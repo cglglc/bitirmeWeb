@@ -23,6 +23,7 @@
       <h1 class="title">Operator Login</h1>
       <p class="subtitle">Sign in to access the operator dashboard</p>
 
+      <!-- Error and pending approval banners -->
       <div id="loginError" class="alert alert-error" role="alert" hidden>
         Invalid credentials or account not approved yet.
       </div>
@@ -39,6 +40,7 @@
         <div class="field">
           <label for="password">Password</label>
           <div class="input-wrap">
+            <!-- Password input and toggle icon button -->
             <input id="password" name="password" type="password" placeholder="********" autocomplete="current-password" required />
             <button class="icon-btn" type="button" id="togglePwd" aria-label="Show password">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
@@ -51,6 +53,7 @@
         <button class="btn btn-primary" type="submit">Sign In</button>
 
         <div class="footnote">
+          <!-- Link to operator access request form -->
           Need an account? <a class="link" href="./register.html">Request access</a>
         </div>
       </form>

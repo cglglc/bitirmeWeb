@@ -1,7 +1,7 @@
 // js/pages/operatorLogin.js
-import { auth, db } from '../firebaseClient.js';
-import { signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
-import { doc, getDoc } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
+import { auth } from '../firebaseClient.js';
+import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
+import { operators } from '../../data/mockOperators.js';
 
 const form = document.getElementById('loginForm');
 const emailInput = document.getElementById('email');
@@ -15,6 +15,7 @@ function showError(msg) {
   errorBox.hidden = false;
 }
 
+// Simple password show/hide toggle
 togglePwd?.addEventListener('click', () => {
   const isPwd = passwordInput.type === 'password';
   passwordInput.type = isPwd ? 'text' : 'password';
@@ -26,7 +27,7 @@ form?.addEventListener('submit', async (e) => {
   errorBox.hidden = true;
   pendingBox.hidden = true;
 
-  const email = emailInput.value.trim();
+  const email = emailInput.value.trim().toLowerCase();
   const password = passwordInput.value.trim();
   if (!email || !password) {
     showError('Please enter email and password.');
@@ -34,16 +35,27 @@ form?.addEventListener('submit', async (e) => {
   }
 
   try {
-    const cred = await signInWithEmailAndPassword(auth, email, password);
-    const reqSnap = await getDoc(doc(db, 'operatorRequests', cred.user.uid));
-    if (!reqSnap.exists() || reqSnap.data().status !== 'approved') {
-      await signOut(auth);
-      pendingBox.hidden = false;
+    // Primary: Firebase auth (real accounts)
+    await signInWithEmailAndPassword(auth, email, password);
+    // Only allow users that exist in operator directory
+    const op = operators.find(o => o.email.toLowerCase() === email);
+    if (!op) {
+      showError('Your account is not registered as an operator.');
       return;
     }
     localStorage.setItem('operator_session', 'true');
+    localStorage.setItem('operator_user_id', op?.id || '');
     window.location.href = './index.html';
+    return;
   } catch (err) {
+    // Fallback for demo/offline: match against mock operators
+    const op = operators.find(o => o.email.toLowerCase() === email && o.password === password);
+    if (op) {
+      localStorage.setItem('operator_session', 'true');
+      localStorage.setItem('operator_user_id', op.id);
+      window.location.href = './index.html';
+      return;
+    }
     showError(err?.message || 'Invalid credentials.');
   }
 });
